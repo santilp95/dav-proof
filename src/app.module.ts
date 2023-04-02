@@ -31,9 +31,13 @@ import { configuration } from 'config/configuration';
         synchronize: true,
       }),
     }),
-    JwtModule.register({
-      secret: 'my-secret',
-      signOptions: { expiresIn: '1h' },
+    JwtModule.registerAsync({
+      imports: [ConfigModule],
+      useFactory: async (configService: ConfigService) => ({
+        secret: configService.get<string>('JWT_SECRET'),
+        signOptions: { expiresIn: '1h' },
+      }),
+      inject: [ConfigService],
     }),
     PrismaModule,
     UsersModule,

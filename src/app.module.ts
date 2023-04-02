@@ -1,11 +1,13 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { JwtModule } from '@nestjs/jwt';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { User } from './users/entities/user.entity';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
+import { PrismaService } from './prisma.service';
 
 @Module({
   imports: [
@@ -19,10 +21,14 @@ import { AuthModule } from './auth/auth.module';
       entities: [User],
       synchronize: true,
     }),
+    JwtModule.register({
+      secret: 'my-secret',
+      signOptions: { expiresIn: '1h' },
+    }),
     UsersModule,
     AuthModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, PrismaService],
 })
 export class AppModule {}

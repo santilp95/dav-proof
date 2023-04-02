@@ -21,7 +21,7 @@ export class User {
   password: string;
 
   @Column()
-  mobile_phone: number;
+  mobile_pho: string;
 
   @Column()
   email: string;

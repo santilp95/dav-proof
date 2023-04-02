@@ -18,7 +18,7 @@ model User {
   date_birth  String
   address     String
   password    String
-  mobile_pho  String
+  mobile_pho  String   @unique
   email       String   @unique
   created_at  DateTime @default(now())
   updated_at  DateTime @updatedAt

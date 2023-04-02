@@ -7,7 +7,8 @@ import { AppService } from './app.service';
 import { User } from './users/entities/user.entity';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
-import { PrismaService } from './prisma.service';
+import { PrismaService } from './prisma/prisma.service';
+import { PrismaModule } from './prisma/prisma.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { PrismaService } from './prisma.service';
       secret: 'my-secret',
       signOptions: { expiresIn: '1h' },
     }),
+    PrismaModule,
     UsersModule,
     AuthModule,
   ],

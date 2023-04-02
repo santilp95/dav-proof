@@ -24,7 +24,7 @@ export class AuthService {
       throw new Error('Invalid password');
     }
 
-    const payload = { mobile_phone: user.mobile_phone, email: user.email };
+    const payload = { mobile_phone: user.mobile_pho, email: user.email };
 
     return {
       user,

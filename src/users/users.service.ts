@@ -30,17 +30,12 @@ export class UsersService {
     return newUser;
   }
 
-  async findAll(): Promise<User[]> {
-    return this.prisma.user.findMany();
-  }
-
   async findOneByMobilePhone(mobile_pho: string): Promise<User> {
     return this.prisma.user.findUnique({ where: { mobile_pho } });
   }
 
   async getUsers(): Promise<User[]> {
-    const users = await this.prisma.user.findMany();
-    return users;
+    return await this.prisma.user.findMany();
   }
 
   async getUserById(id: number): Promise<User> {

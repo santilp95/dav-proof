@@ -1,15 +1,23 @@
 import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { ConfigService } from '@nestjs/config';
+
 import { AppModule } from './app.module';
 
 const logger = new Logger('APP');
-const port = 3000;
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  const configService: ConfigService = app.get(ConfigService);
+  logger.log('Project with env ' + configService.get<string>('PROJECT_ID'));
+  const port = configService.get<string>('PORT') || 3000;
   const config = new DocumentBuilder()
-    .setTitle('User Davivienda')
+    .setTitle(
+      `${configService.get<string>('APP_NAME')} By ${configService.get<string>(
+        'COMPANY_NAME',
+      )}`,
+    )
     .setDescription('Reto para Davivienda')
     .setVersion('1.0')
     .addTag('davivienda')

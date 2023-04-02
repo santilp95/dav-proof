@@ -41,21 +41,13 @@ export class UsersController {
   }
 
   @Get()
-  @ApiBody({
-    description: 'Get Users',
-  })
   async getUsers() {
-    const users = await this.usersService.getUsers();
-    return users;
+    return await this.usersService.getUsers();
   }
 
   @Get(':id')
-  @ApiBody({
-    description: 'Get Users By id',
-  })
   async getUserById(@Param('id') id: number) {
-    const user = await this.usersService.getUserById(id);
-    return user;
+    return await this.usersService.getUserById(+id);
   }
 
   @ApiBody({
@@ -63,12 +55,25 @@ export class UsersController {
     description: 'Update user  by id',
     examples: {
       one: {
-        summary: 'Update user with this data, this example is 10',
+        summary: 'Update user with this data, this example is id:10',
         value: {
           id: 10,
           first_name: 'Santiago',
           last_name: 'López',
           date_birth: '24/03/1995',
+          email: 'santiagolopezamaya@hotmail.com',
+          password: '123456',
+          mobile_pho: '3217654321',
+          address: 'AV 321',
+        } as UpdateUserDto,
+      },
+      two: {
+        summary: 'Update user with this data, this example is id:12',
+        value: {
+          id: 12,
+          first_name: 'Camilo',
+          last_name: 'López',
+          date_birth: '24/03/1997',
           email: 'santiagolopezamaya@hotmail.com',
           password: '123456',
           mobile_pho: '3217654321',
@@ -83,9 +88,6 @@ export class UsersController {
   }
 
   @Delete(':id')
-  @ApiBody({
-    description: 'Delete Users By id',
-  })
   async deleteUser(@Param('id') id: string) {
     return await this.usersService.deleteUser(+id);
   }

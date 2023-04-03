@@ -74,6 +74,8 @@ npm run seed
 npx nestjs-command seed
 ```
 
+- incializar prisma
+
 ```bash
 npx prisma migrate dev --name init
 ```

@@ -14,7 +14,7 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { ApiBearerAuth, ApiBody, ApiTags } from '@nestjs/swagger';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth/jwt-auth.guard';
 
-@Controller('v1/users')
+@Controller('api/v1/users')
 @ApiTags('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}

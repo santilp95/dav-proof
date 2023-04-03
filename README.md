@@ -14,6 +14,26 @@ Proyecto realizado con
 
 Este proyecto se puede correr como un proyecto de nest y hay dos opciones con docker y node
 
+#### Env
+
+Para ver los .env por favor ver el archivo .env.example
+
+Es importante aclarar que el host en postgres cambia dependiendo si es local o docker
+
+- local
+
+```
+# si es local
+DB_HOST = localhost
+```
+
+- docker
+
+```
+# si es docker
+DB_HOST = dav-proof-postgres
+```
+
 ### Docker
 
 1. Para esto hay que tener previamente docker en el computador instalado

@@ -21,6 +21,7 @@ async function bootstrap() {
     .setDescription('Reto para Davivienda')
     .setVersion('1.0')
     .addTag('davivienda')
+    .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);

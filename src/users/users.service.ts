@@ -7,6 +7,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
 import { PrismaService } from '../prisma/prisma.service';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UsersService {
@@ -23,8 +24,15 @@ export class UsersService {
       throw new ConflictException(`User with email ${email} already exists`);
     }
 
+    const hashedPassword = await bcrypt.hash(userData.password, 10);
+
+    const data = {
+      ...userData,
+      password: hashedPassword,
+    };
+
     const newUser = await this.prisma.user.create({
-      data: userData,
+      data,
     });
 
     return newUser;
@@ -67,8 +75,7 @@ export class UsersService {
       throw new Error('User not found');
     }
 
-    // const isPasswordValid = await bcrypt.compare(password, user.password);
-    const isPasswordValid = user.password === password;
+    const isPasswordValid = await bcrypt.compare(password, user.password);
 
     if (!isPasswordValid) {
       throw new Error('Invalid password');

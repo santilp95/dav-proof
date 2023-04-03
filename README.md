@@ -31,6 +31,12 @@ npm install
 
 ## Primsa use
 
+Para llenar la bd con prisma
+
+```bash
+npx nestjs-command seed 
+```
+
 ```bash
 npx prisma migrate dev --name init
 ```

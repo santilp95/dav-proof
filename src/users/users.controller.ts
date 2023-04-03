@@ -19,6 +19,20 @@ import { JwtAuthGuard } from '../auth/guards/jwt-auth/jwt-auth.guard';
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
+  @Get()
+  @ApiBearerAuth()
+  @UseGuards(JwtAuthGuard)
+  async getUsers() {
+    return await this.usersService.getUsers();
+  }
+
+  @Get(':id')
+  @ApiBearerAuth()
+  @UseGuards(JwtAuthGuard)
+  async getUserById(@Param('id') id: number) {
+    return await this.usersService.getUserById(+id);
+  }
+
   @Post()
   @ApiBody({
     type: CreateUserDto,
@@ -43,20 +57,6 @@ export class UsersController {
   @UseGuards(JwtAuthGuard)
   async createUser(@Body() createUserDto: CreateUserDto) {
     return this.usersService.createUser(createUserDto);
-  }
-
-  @Get()
-  @ApiBearerAuth()
-  @UseGuards(JwtAuthGuard)
-  async getUsers() {
-    return await this.usersService.getUsers();
-  }
-
-  @Get(':id')
-  @ApiBearerAuth()
-  @UseGuards(JwtAuthGuard)
-  async getUserById(@Param('id') id: number) {
-    return await this.usersService.getUserById(+id);
   }
 
   @ApiBody({

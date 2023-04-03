@@ -34,11 +34,11 @@ async function seed() {
             update: {},
             create: {
                 id: 2,
-                first_name: 'prueba',
+                first_name: 'prueba 2',
                 last_name: 'prueba',
                 date_birth: '24/07/1997',
                 address: 'AV prueba',
-                password: await hash('123456', 10),
+                password: await hash('prueba', 10),
                 mobile_pho: 'prueba',
                 email: 'prueba@prueba.com',
             }

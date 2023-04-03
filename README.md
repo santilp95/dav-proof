@@ -16,6 +16,26 @@ Este proyecto se puede correr como un proyecto de nest y hay dos opciones con do
 
 la url del swagger es 'http://localhost:3000/api'
 
+#### pueba
+
+usuarios de ejemplo
+
+```
+{
+  "password": "prueba",
+  "mobile_phone": "prueba"
+}
+```
+
+en caso de que prueba la clave no sea prueba probar con 123456 o probar con este otro usuario
+
+```
+{
+  "password": "123456",
+  "mobile_phone": "23423434"
+}
+```
+
 #### Env
 
 Para ver los .env por favor ver el archivo .env.example

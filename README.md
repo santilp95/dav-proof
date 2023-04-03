@@ -14,6 +14,8 @@ Proyecto realizado con
 
 Este proyecto se puede correr como un proyecto de nest y hay dos opciones con docker y node
 
+la url del swagger es 'http://localhost:3000/api'
+
 #### Env
 
 Para ver los .env por favor ver el archivo .env.example

@@ -59,4 +59,21 @@ export class UsersService {
     this.prisma.user.delete({ where: { id } });
     return { message: `User with ID ${id} has been deleted.` };
   }
+
+  async login(mobile_phone: string, password: string) {
+    const user = await this.findOneByMobilePhone(mobile_phone);
+
+    if (!user) {
+      throw new Error('User not found');
+    }
+
+    // const isPasswordValid = await bcrypt.compare(password, user.password);
+    const isPasswordValid = user.password === password;
+
+    if (!isPasswordValid) {
+      throw new Error('Invalid password');
+    }
+
+    return user;
+  }
 }

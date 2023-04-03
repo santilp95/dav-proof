@@ -2,7 +2,6 @@ import { Controller, Post, Body } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { ApiBody } from '@nestjs/swagger';
 import { LoginUserDto } from './dto/login-user.dto';
-
 @Controller('users')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
@@ -22,6 +21,11 @@ export class AuthController {
     },
   })
   async login(@Body() body: LoginUserDto) {
-    return this.authService.login(body.mobile_phone, body.password);
+    const user = await this.authService.validateUser(
+      body.mobile_phone,
+      body.password,
+    );
+    const accessToken = await this.authService.login(user as any);
+    return this.authService.singIn(accessToken);
   }
 }

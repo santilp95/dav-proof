@@ -62,13 +62,13 @@ npm install
 
 ##### User prisma
 
-Para llenar la bd con prisma
+- Para llenar la bd con prisma
 
 ```bash
-npx run seed
+npm run seed
 ```
 
-si desea mas datos puede ejecutar el siguiente comando
+- si desea mas datos puede ejecutar el siguiente comando
 
 ```bash
 npx nestjs-command seed

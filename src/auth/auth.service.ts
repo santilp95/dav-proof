@@ -18,7 +18,8 @@ export class AuthService {
       throw new Error('User not found');
     }
 
-    const isPasswordValid = await bcrypt.compare(password, user.password);
+    // const isPasswordValid = await bcrypt.compare(password, user.password);
+    const isPasswordValid = user.password === password;
 
     if (!isPasswordValid) {
       throw new Error('Invalid password');

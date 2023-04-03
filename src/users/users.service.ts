@@ -1,7 +1,8 @@
 import {
+  BadRequestException,
   ConflictException,
   Injectable,
-  NotFoundException,
+  UnauthorizedException,
 } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -51,7 +52,7 @@ export class UsersService {
       where: { id },
     });
     if (!user) {
-      throw new NotFoundException(`User with id ${id} not found`);
+      throw new BadRequestException(`User with id ${id} not found`);
     }
     return user;
   }
@@ -72,13 +73,13 @@ export class UsersService {
     const user = await this.findOneByMobilePhone(mobile_phone);
 
     if (!user) {
-      throw new Error('User not found');
+      throw new UnauthorizedException();
     }
 
     const isPasswordValid = await bcrypt.compare(password, user.password);
 
     if (!isPasswordValid) {
-      throw new Error('Invalid password');
+      throw new UnauthorizedException();
     }
 
     return user;

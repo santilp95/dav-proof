@@ -7,17 +7,16 @@ WORKDIR /app
 COPY package*.json ./
 COPY prisma ./prisma/
 COPY prisma ./prisma/
-COPY src/cli.ts ./app/src
+COPY src/cli.ts /app/src/cli.ts
+
+RUN ls -lR /app/src
 # Install app dependencies
 RUN npm install
+RUN npm install -g prisma
 RUN npm install -g nestjs-command
 # Generate prisma client, leave out if generating in `postinstall` script
 RUN npx prisma generate
-# Crear la migracion de la BD
-# RUN prisma migrate deploy
-# RUN npx prisma db seed
 
-CMD ["npx", "nestjs-command", "seed"]
 
 COPY . .
 
